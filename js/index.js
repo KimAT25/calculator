@@ -1,11 +1,30 @@
 const display = document.querySelector('.calc .display');
 document.querySelectorAll('.calc .digits button, .calc .operation button')
     .forEach( button => button.addEventListener('click', digitOperPressed));
+
+function isOperationSymbol(operator) {
+	switch(operator) {
+		case '+':
+		case '-':
+		case '*':
+		case '/':
+			return true;
+	}
+	return false;
+}
+
 function digitOperPressed(event) {
-    
     const btnText = event.target.innerText;
-    display.value += btnText;
-};
+    if (isOperationSymbol(btnText)) {
+    	const lastCharacter = display.value[display.value.length - 1];
+    	if (lastCharacter != btnText) {
+			if (isOperationSymbol(lastCharacter)) {
+				display.value = btnText + display.value.slice(0, -1);
+			} display.value += btnText;
+    	}
+    } 
+}
+
 document.querySelector('.calc .equal')
     .addEventListener('click', equalPressed);
 function equalPressed() {
