@@ -9,7 +9,7 @@ function digitOperPressed(event) {
 document.querySelector('.calc .equal')
     .addEventListener('click', equalPressed);
 function equalPressed() {
-    if (eval(display.value) === Infinity) 
+    if (eval(display.value) === Infinity || -Infinity) 
     {display.value = 'div0'} 
     display.value = eval(display.value);
 };
