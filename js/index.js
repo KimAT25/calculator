@@ -19,10 +19,14 @@ function digitOperPressed(event) {
     	const lastCharacter = display.value[display.value.length - 1];
     	if (lastCharacter != btnText) {
 			if (isOperationSymbol(lastCharacter)) {
-				display.value = btnText + display.value.slice(0, -1);
-			} display.value += btnText;
+				display.value = display.value.slice(0, -1) + btnText;
+			} else {
+				display.value += btnText;
+			}
     	}
-    } 
+    } else {
+    	display.value += btnText;
+	}
 }
 
 document.querySelector('.calc .equal')
