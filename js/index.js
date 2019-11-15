@@ -2,12 +2,15 @@ const display = document.querySelector('.calc .display');
 document.querySelectorAll('.calc .digits button, .calc .operation button')
     .forEach( button => button.addEventListener('click', digitOperPressed));
 function digitOperPressed(event) {
+    
     const btnText = event.target.innerText;
     display.value += btnText;
 };
 document.querySelector('.calc .equal')
     .addEventListener('click', equalPressed);
 function equalPressed() {
+    if (eval(display.value) === Infinity) 
+    {display.value = 'div0'} 
     display.value = eval(display.value);
 };
 document.querySelector('.calc .all-clear-all')
@@ -34,12 +37,11 @@ function procentNumbr() {
     const minNum = parseFloat(display.value);
     display.value = minNum / 100;
 }
-// document.querySelector('.calc .operation')
-//     .addEventListener('click', oneClick);
-// function oneClick() {
-//     const onlyOneClick = document.querySelector('.calc .operation')
-//     if(display.value === onlyOneClick) {
-//         return    
-//     };
-// }
-
+document.querySelector('.calc .operation')
+    .addEventListener('click', oneClick);
+function oneClick() {
+    if(display.value === operation.length) {
+        const oneClikOprn = display.value;
+        display.value = oneClikOprn.slice(0,-1) + eval(display.value);
+    }; 
+}
